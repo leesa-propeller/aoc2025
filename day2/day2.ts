@@ -21,19 +21,6 @@ const isInvalidIdA = (num: number) => {
     return strA === strB;
 }
 
-const dayTwoA = (path: string) => {
-    const ranges = readFile(path).map((str) => getRange(str));
-    let invalidIdsSum = 0;
-    ranges.map((range) => {
-        range.forEach((num) => {
-            if (isInvalidIdA(num)) {
-                invalidIdsSum += num;
-            }
-        })
-    })
-    return invalidIdsSum;
-}
-
 const hasRepeatingRange = (sequence: string, str: string) => {
     const seqLen = sequence.length;
     // as a first check, see if the str length is divisible by the sequence 
@@ -46,7 +33,6 @@ const hasRepeatingRange = (sequence: string, str: string) => {
 
     return true;
 }
-
 
 const isInvalidIdB = (num: number) => {
     const str = num.toString(); 
@@ -62,19 +48,21 @@ const isInvalidIdB = (num: number) => {
     return false;
 }
 
-const dayTwoB = (path: string) => {
-    const ranges = readFile(path).map((str) => getRange(str));
-    let invalidIdsSum = 0;
-    ranges.map((range) => {
-        range.forEach((num) => {
-            if (isInvalidIdB(num)) {
-                invalidIdsSum += num;
-            }
-        })
+const dayTwo = (path: string) => {
+    let invalidIdsSumA = 0;
+    let invalidIdsSumB = 0;
+
+    const ranges = readFile(path).flatMap((str) => getRange(str));
+    ranges.forEach((num) => {
+        if (isInvalidIdA(num)) {
+            invalidIdsSumA += num;
+        }
+        if (isInvalidIdB(num)) {
+            invalidIdsSumB += num;
+        }
     })
 
-    return invalidIdsSum
+    return { invalidIdsSumA, invalidIdsSumB }
 }
 
-console.log(dayTwoA('day2.txt'));
-console.log(dayTwoB('day2.txt'));
+console.log(dayTwo('day2.txt'));
