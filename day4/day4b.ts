@@ -20,8 +20,8 @@ const runAlgo = () => {
         for (let col = 0; col < colLength; col++) {
             if (grid[row][col] === '@') {
                 const validCells = getAdjacentPositions(row, col, rowLength, colLength)
-                const tpRolls = validCells.reduce((acc, curr) => {
-                    if (grid[curr[0]][curr[1]] === '@') return acc + 1;
+                const tpRolls = validCells.reduce((acc, [i, j]) => {
+                    if (grid[i][j] === '@') return acc + 1;
                     return acc;
                 }, 0)
 
