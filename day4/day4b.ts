@@ -16,8 +16,8 @@ export const readFile = (path: string) => {
 const runAlgo = () => {
     let removed = 0;
     
-    for (let row = 0; row < grid[0].length; row++) {
-        for (let col = 0; col < grid.length; col++) {
+    for (let row = 0; row < rowLength; row++) {
+        for (let col = 0; col < colLength; col++) {
             if (grid[row][col] === '@') {
                 const validCells = getAdjacentPositions(row, col, rowLength, colLength)
                 const tpRolls = validCells.reduce((acc, curr) => {
@@ -38,7 +38,6 @@ const runAlgo = () => {
     }
 
     return removed;
-
 }
 
 const dayFourB = () => {
