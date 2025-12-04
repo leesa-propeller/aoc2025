@@ -9,6 +9,7 @@ export const getAdjacentPositions = (row: number, col: number, rowLength: number
         [row+1, col], // bottom 
         [row+1, col+1] // bottom right
     ].filter(([x, y]) => {
+        // get rid of cells that are out of bounds
         if (x < 0 || x === rowLength) return null;
         if (y < 0 || y === colLength) return null;
         return [x,y] 

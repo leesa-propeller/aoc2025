@@ -41,13 +41,14 @@ const runAlgo = () => {
 }
 
 const dayFourB = () => {
+    readFile('day4.txt')
     // start with a positive just to kick things off
     let removed = 1;
     while (removed > 0) {
         removed = runAlgo();
     }
+
+    console.log(totalSum)
 }
 
-readFile('day4.txt');
 dayFourB();
-console.log(totalSum)
