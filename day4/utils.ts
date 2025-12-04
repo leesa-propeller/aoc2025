@@ -1,4 +1,4 @@
-export const getAdjacentPositions = (row: number, col: number) => 
+export const getAdjacentPositions = (row: number, col: number, rowLength: number, colLength: number) => 
     [
         [row-1, col-1], // top left
         [row-1, col], // top
@@ -8,12 +8,8 @@ export const getAdjacentPositions = (row: number, col: number) =>
         [row+1, col-1], // bottom left
         [row+1, col], // bottom 
         [row+1, col+1] // bottom right
-    ]
-
-export const removeInvalidCells = (positions: number[][], rowLength: number, colLength: number) => {
-    return positions.map(([x, y]) => {
+    ].filter(([x, y]) => {
         if (x < 0 || x === rowLength) return null;
         if (y < 0 || y === colLength) return null;
-        return [x,y]
+        return [x,y] 
     }).filter((pos) => pos !== null)
-}

@@ -1,5 +1,5 @@
 import fs from 'node:fs';
-import { getAdjacentPositions, removeInvalidCells } from './utils';
+import { getAdjacentPositions } from './utils';
 
 export const readFile = (path: string) => {
     const input = fs.readFileSync(path, 'utf8').split('\n');
@@ -16,8 +16,8 @@ const dayFourA = (path: string) => {
     for (let row = 0; row < grid[0].length; row++) {
         for (let col = 0; col < grid.length; col++) {
             if (grid[row][col] === '@') {
-                const positionsToCheck = getAdjacentPositions(row, col)
-                const validCells = removeInvalidCells(positionsToCheck, rowLength, colLength);
+                const validCells = getAdjacentPositions(row, col, rowLength, colLength)
+                // const validCells = removeInvalidCells(positionsToCheck, rowLength, colLength);
                 const tpRolls = validCells.reduce((acc, curr) => {
                     if (grid[curr[0]][curr[1]] === '@') return acc + 1;
                     return acc;
